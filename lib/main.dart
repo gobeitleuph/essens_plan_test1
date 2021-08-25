@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
@@ -157,7 +156,7 @@ class AnsichtLogin extends StatelessWidget{
                         FlatButton(
                           textColor: Colors.blue,
                           child: Text(
-                            'Essensplan einsehen',
+                            'Essensplan',
                             style: TextStyle(fontSize: 20),
                           ),
                           onPressed: () {
