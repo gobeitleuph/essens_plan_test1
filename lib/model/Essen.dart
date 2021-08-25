@@ -1,3 +1,5 @@
+
+import 'package:super_hero/super_hero.dart';
 class Essen {
 
   String _Name;
@@ -7,9 +9,9 @@ class Essen {
   bool _vegan;
   bool _vegetarisch;
 
+  Essen(this._Name, this._Preis, this._mitFleisch, this._vegan,
+      this._vegetarisch);
 
-
-  Essen(this.Name, this.Preis, this.mitFleisch, this.vegan, this.vegetarisch);
 // Werte initialisieren
 //hslli
 //neu
