@@ -1,19 +1,19 @@
 class Essen {
 
-  String Name;
-  int Preis;
+  String _Name;
+  int _Preis;
 
-  bool mitFleisch;
-  bool vegan;
-  bool vegetarisch;
+  bool _mitFleisch;
+  bool _vegan;
+  bool _vegetarisch;
 
 
-// Hier müsste eine Schleife rein, da wenn Fleisch nein ist, vegan oder vergetarisch automatisch ja werden muss
 
   Essen(this.Name, this.Preis, this.mitFleisch, this.vegan, this.vegetarisch);
 // Werte initialisieren
 //hslli
 //neu
+
 
 
 }
