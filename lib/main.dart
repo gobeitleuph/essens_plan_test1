@@ -1,6 +1,7 @@
 import 'package:essens_plan/model/Essen.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
+import 'package:horizontal_data_table/horizontal_data_table.dart';
 
 void main() {
   runApp(MyApp());
