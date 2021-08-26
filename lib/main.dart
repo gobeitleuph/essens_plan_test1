@@ -1,9 +1,40 @@
+import 'package:essens_plan/model/Essen.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 void main() {
   runApp(MyApp());
 }
+
+List<Appointment> getAppointments(){
+  List<Appointment> meetings = <Appointment>[];
+  final DateTime today = DateTime.now();
+  final DateTime startTime =
+      DateTime(today.year, today.month, today.day, 11, 0 ,0);
+  final DateTime endTime = startTime.add(const Duration(hours: 1));
+
+  meetings.add(Appointment(
+    startTime: startTime,
+    endTime: endTime,
+    subject: essen1.name,
+    color: Colors.blue,
+    isAllDay: false));
+
+  return meetings;
+}
+
+class MeetingDataSource extends CalendarDataSource {
+  MeetingDataSource(List<Appointment> source) {
+    appointments = source;
+  }
+}
+
+final essen1 = new Essen ("kartoffelbrei",
+                          200,
+                          false,
+                          false,
+                          true,
+);
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -62,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
         timeSlotViewSettings: TimeSlotViewSettings(
             startHour: 11,
             endHour: 12,
-            nonWorkingDays:  [
+            nonWorkingDays: [
               DateTime.saturday,
               DateTime.sunday,
             ],
@@ -72,6 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
             dateFormat: 'd',
             dayFormat: 'EEEE',
             timeRulerSize: 0),
+            dataSource: MeetingDataSource(getAppointments()),
       ),
     );
   }

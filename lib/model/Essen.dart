@@ -1,15 +1,14 @@
 class Essen {
 
-  String Name;
-  int Preis;
-
+  String name;
+  int  preis;
   bool mitFleisch;
   bool vegan;
   bool vegetarisch;
 
 
 
-  Essen(this.Name, this.Preis, this.mitFleisch, this.vegan, this.vegetarisch);
+  Essen(this.name, this.preis, this.mitFleisch, this.vegan, this.vegetarisch);
 // Werte initialisieren
 //hslliasdsdds
 //neu
