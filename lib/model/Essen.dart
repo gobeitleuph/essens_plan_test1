@@ -11,7 +11,7 @@ class Essen {
 
   Essen(this.Name, this.Preis, this.mitFleisch, this.vegan, this.vegetarisch);
 // Werte initialisieren
-//hslli
+//hslliasd
 //neu
 
 
