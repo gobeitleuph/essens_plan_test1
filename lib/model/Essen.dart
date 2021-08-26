@@ -1,11 +1,11 @@
 class Essen {
 
-  String _Name;
-  int _Preis;
+  String Name;
+  int Preis;
 
-  bool _mitFleisch;
-  bool _vegan;
-  bool _vegetarisch;
+  bool mitFleisch;
+  bool vegan;
+  bool vegetarisch;
 
 
 
