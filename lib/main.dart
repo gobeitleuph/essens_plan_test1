@@ -230,26 +230,73 @@ class AdditionalAttribute_Appointment extends StatefulWidget {
   State<StatefulWidget> createState() => AppointmentDetails();
 }
 
+TextEditingController _eventController = TextEditingController();
+
 class AppointmentDetails extends State<AdditionalAttribute_Appointment> {
-  String _subjectText='', _startTimeText='', _endTimeText='', _dateText='', _timeDetails='';
+  String _subjectText = '',
+      _startTimeText = '',
+      _endTimeText = '',
+      _dateText = '',
+      _timeDetails = '';
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SafeArea(
-          child: SfCalendar(
-            view: CalendarView.week,
-            dataSource: getCalendarDataSource(),
-            onTap: calendarTapped,
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          body: SafeArea(
+            child: SfCalendar(
+              view: CalendarView.week,
+              dataSource: getCalendarDataSource(),
+              onTap: calendarTapped,
+            ),
           ),
-        ),
-        floatingActionButton: FloatingActionButton.extended(
-            onPressed: (){},
-            label: Text("Essen hinzufügen"),
-            icon: Icon(Icons.add))
-      ),
+          floatingActionButton: FloatingActionButton.extended(
+            onPressed: () =>
+                showDialog(
+                  context: context,
+                  builder: (context) =>
+                      AlertDialog(
+                        title: Text("Add Event"),
+                        content: TextFormField(
+                          controller: _eventController,
+                        ),
+                        actions: [
+                          TextButton(
+                            child: Text("Cancel"),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                          TextButton(
+                            child: Text("Ok"),
+                            onPressed: () {
+                              if (_eventController.text.isEmpty) {
+
+                              } else {
+                                if (
+                                MeetingDataSource.appointments.add(Meeting(
+                                    (eventName: _eventController.text),
+                                    background: Colors.pink,
+
+                                  );
+                                } else {
+                                  selectedEvents[selectedDay] = [
+                                    Event(title: _eventController.text)
+                                  ];
+                                }
+                              }
+                              Navigator.pop(context);
+                              _eventController.clear();
+                              setState(() {});
+                              return;
+                            },
+                          ),
+                        ],
+                      ),
+                ),
+            label: Text("Add Event"),
+            icon: Icon(Icons.add),
+          ),
+        )
     );
   }
 
@@ -303,22 +350,28 @@ class AppointmentDetails extends State<AdditionalAttribute_Appointment> {
                     ),
                     Row(
                       children: [
-                        Text("Preis:" + appointmentDetails.essen!.preis.toString())
+                        Text("Preis:" +
+                            appointmentDetails.essen!.preis.toString())
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Vegetarisch:" + appointmentDetails.essen!.vegetarisch.toString())
+                        Text("Vegetarisch:" +
+                            appointmentDetails.essen!.vegetarisch.toString())
                       ],
                     ),
                     Row(
                       children: [
-                        Text("Vegan:" + appointmentDetails.essen!.vegan.toString())
+                        Text("Vegan:" +
+                            appointmentDetails.essen!.vegan.toString())
                       ],
                     ),
                     Row(
                       children: [
-                        Text("mit Fleisch:" + EssenDataSource().essensliste.elementAt(0).mitFleisch.toString())
+                        Text("mit Fleisch:" + EssenDataSource().essensliste
+                            .elementAt(0)
+                            .mitFleisch
+                            .toString())
                       ],
                     ),
                   ],
@@ -381,7 +434,6 @@ class AppointmentDetails extends State<AdditionalAttribute_Appointment> {
         eventName: 'Retrospective'));
 
     return MeetingDataSource(appointments);
-
   }
 }
 
@@ -393,19 +445,24 @@ final Essen es1 = new Essen(
     vegetarisch: true,
     mitFleisch: false);
 
-class EssenDataSource{
+class EssenDataSource {
   final List<Essen> essensliste = <Essen>[];
 
 
-  EssenDataSource() {essensliste.add(es1);}
+  EssenDataSource() {
+    essensliste.add(es1);
+  }
 
 
- }
+}
 
 class MeetingDataSource extends CalendarDataSource {
   MeetingDataSource(List<Meeting> source) {
     appointments = source;
   }
+
+  List<Meeting> _appointments = es1;
+
 
   @override
   DateTime getStartTime(int index) {
