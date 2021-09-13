@@ -278,10 +278,6 @@ class AppointmentDetails extends State<AdditionalAttribute_Appointment> {
                                     background: Colors.pink,
 
                                   );
-                                } else {
-                                  selectedEvents[selectedDay] = [
-                                    Event(title: _eventController.text)
-                                  ];
                                 }
                               }
                               Navigator.pop(context);
